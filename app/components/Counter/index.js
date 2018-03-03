@@ -1,23 +1,14 @@
 // @flow
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import styles from './Counter.css';
+import { inject, observer } from 'mobx-react';
+import styles from './style.css';
 
-type Props = {
-  increment: () => void,
-  incrementIfOdd: () => void,
-  incrementAsync: () => void,
-  decrement: () => void,
-  counter: number
-};
-
-export default class Counter extends Component<Props> {
-  props: Props;
-
+@inject(root => ({ counter: root.counter }))
+@observer
+class Counter extends Component {
   render() {
-    const {
-      increment, incrementIfOdd, incrementAsync, decrement, counter
-    } = this.props;
+    const { increment, incrementIfOdd, incrementAsync, decrement, count } = this.props.counter;
     return (
       <div>
         <div className={styles.backButton} data-tid="backButton">
@@ -26,7 +17,7 @@ export default class Counter extends Component<Props> {
           </Link>
         </div>
         <div className={`counter ${styles.counter}`} data-tid="counter">
-          {counter}
+          {count}
         </div>
         <div className={styles.btnGroup}>
           <button className={styles.btn} onClick={increment} data-tclass="btn">
@@ -42,3 +33,5 @@ export default class Counter extends Component<Props> {
     );
   }
 }
+
+export default Counter;
