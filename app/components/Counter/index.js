@@ -4,11 +4,25 @@ import { Link } from 'react-router-dom';
 import { inject, observer } from 'mobx-react';
 import styles from './style.css';
 
+type Props = {
+  counter: {
+    increment: () => void,
+    incrementIfOdd: () => void,
+    incrementAsync: () => void,
+    decrement: () => void,
+    count: number
+  }
+};
+
 @inject(root => ({ counter: root.counter }))
 @observer
 class Counter extends Component {
+  props: Props;
+
   render() {
-    const { increment, incrementIfOdd, incrementAsync, decrement, count } = this.props.counter;
+    const {
+      increment, incrementIfOdd, incrementAsync, decrement, count
+    } = this.props.counter;
     return (
       <div>
         <div className={styles.backButton} data-tid="backButton">
