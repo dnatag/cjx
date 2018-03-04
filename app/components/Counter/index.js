@@ -16,7 +16,7 @@ type Props = {
 
 @inject(root => ({ counter: root.counter }))
 @observer
-class Counter extends Component {
+class Counter extends Component<Props> {
   props: Props;
 
   render() {

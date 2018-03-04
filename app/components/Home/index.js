@@ -5,7 +5,7 @@ import styles from './style.css';
 
 type Props = {};
 
-export default class Home extends Component {
+export default class Home extends Component<Props> {
   props: Props;
 
   render() {
